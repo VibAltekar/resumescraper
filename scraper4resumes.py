@@ -7,10 +7,7 @@ import re
 
 
 def download_res(url="https://vigneshp.com"):
-    #if url[0:3] != "http":
-        #url = "http://" + url
     proc = os.popen("wget --no-directories --content-disposition -e robots=off -l1 -A.pdf -r " + str(url))
-    #proc.readlines()
     return True
 
 def getLinks(url="https://github.com/HackathonHackers/personal-sites"):
