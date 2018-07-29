@@ -5,9 +5,9 @@ from urllib.request import urlopen
 import re
 
 
-'''def download_res(url="https://vigneshp.com"):
+def download_res(url="https://vigneshp.com"):
     proc = os.popen("wget --no-directories --content-disposition -e robots=off -l1 -A.pdf -r " + str(url))
-    return True'''
+    return True
 
 def extractMultipleLinks(collect=None):
     html_page = urlopen(collect)
@@ -29,3 +29,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    download_res()
