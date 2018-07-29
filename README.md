@@ -1,7 +1,0 @@
-# ResumeWatch
-
-## Server
-
-## Client
-
-## Credits
