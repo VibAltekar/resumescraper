@@ -155,3 +155,12 @@ venv.bak/
 .mypy_cache/
 
 .editorconfig
+.eslintrc.js
+.gitattributes
+.gitignore
+.nvmrc
+.prettierignore
+.prettierrc
+.stylelintrc
+.travis.yml
+package-lock.json
