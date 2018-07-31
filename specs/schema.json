@@ -1,0 +1,48 @@
+{
+	"models": {
+		"resume": {
+			"id": "long", /* DB related unique identifier */ 
+			"rid": "long", /* Client related unique identifier */ 
+			"tags": [ /* tags picked up my resume sniffer */ 
+				{
+					"content": "filter"
+				}
+			], 
+			"views": "integer", /* how many times has this resume been viewed */
+			"shares": "integer", /* how many times has the link been copied / shared */ 
+			"url": "string", /* the resume pdf/word doc resource */ 
+			"valid": "boolean", /* is this link no longer live or not. We can write
+			a trash collector service that perhaps cleans out records with this 
+			bool set to false */ 
+		},
+		"filter": {
+			"identifier": "string", /* tag name */ 
+			"plausibility": "boolean" /* is there a similar tag picked up in this set. 
+			We want to avoid sniffing out keywords that are too similar. From a client facing
+			perspective, this boolean will become helpful in displaying a tag or not */ 
+		}
+	}, 
+	"api": { 
+		"add_record": { /* to add a new resume to our db, return the object */ 
+			"tags": "required",
+			"url": "required"
+		},
+		"delete_record": { /* to delete a resume on our db, return the object */ 
+			"id": "required",
+		},
+		"share_record": { /* to share a resume, return the link */ 
+			"id": "required",
+		},
+		"view_count": { /* to get the view count, return the view count */ 
+			"id": "required",
+		},
+		"fetch_filters": {
+			/* return a random set of filters from our database */ 
+		},
+		"search": { /* search for a resume, filters add additional keywords to 
+		refine search */ 
+			"query": "required",
+			"filters": "optional"
+		}
+	}
+}
