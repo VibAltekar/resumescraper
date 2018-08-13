@@ -1,3 +1,9 @@
+#ml stuff
+
+*.tar.gz
+*.model
+
+
 *.gem
 *.rbc
 /.config
