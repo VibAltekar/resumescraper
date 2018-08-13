@@ -1,7 +1,7 @@
-
+import sys
 from allennlp.models.archival import load_archive
 from allennlp.service.predictors import Predictor
-
+import json
 
 class TestBidafPredictor():
     def test_uses_named_inputs(self,inputs=None):
@@ -83,4 +83,8 @@ class TestBidafPredictor():
 
 if __name__ == "__main__":
     t = TestBidafPredictor()
-    print(t.test_uses_named_inputs())
+    if len(sys.argv) > 1 :
+        data = json.loads(sys.argv[1])
+        print(t.test_uses_named_inputs(data))
+    else:
+        print(t.test_uses_named_inputs())
