@@ -22,7 +22,7 @@ export default function App() {
     <div>
       <Switch>
         <Route exact path="/" component={Search} />
-        <Route path="/search/:query" component={Query} />
+        <Route path="/search/:query?" component={Search} />
       </Switch>
     </div>
   );

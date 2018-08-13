@@ -320,4 +320,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-
+app/node_modules

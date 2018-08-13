@@ -8,18 +8,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import "../../components/app.css";
 
 /* eslint-disable react/prefer-stateless-function */
 export class Search extends React.Component {
   constructor(props) {
   	super(props);
   	this.state = {
-  		query: "", 
+  		query: (this.props.match.params.query === undefined) ? "" : this.props.match.params.query,
   		results: []
   	}
-
   	this.changeQuery = this.changeQuery.bind(this);
-  	this.buildSubmitButton = this.buildSubmitButton.bind(this); 
   	this.submitQuery = this.submitQuery.bind(this);
   }
 
@@ -27,19 +26,15 @@ export class Search extends React.Component {
   	this.setState({
   		query: event.target.value
   	}, () => {
+      this.submitQuery();
   		console.log("Query changed!");
   	});
   }
 
   submitQuery() {
-  	var queryToSubmit = this.state.query; 
+  	var queryToSubmit = this.state.query;
+    console.log("pushing new view");
   	this.props.history.push("/search/".concat(queryToSubmit));
-  }
-
-  buildSubmitButton() {
-  	return (
-  		<button disabled={this.state.query === ""} onClick={this.submitQuery}>Search</button>
-  	); 
   }
 
   buildSearchField() {
@@ -49,10 +44,11 @@ export class Search extends React.Component {
   }
 
   buildComponent() {
+    console.log("hi", this.props.match.params);
+
   	return (
   		<div>
   			{this.buildSearchField()}
-  			{this.buildSubmitButton()}
   		</div>
   	)
   }
