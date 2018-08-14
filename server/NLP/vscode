@@ -1,0 +1,24 @@
+{
+    "workbench.colorTheme": "ƒ - Monokai - Operator Mono/Italic",
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all", 
+    "window.titleBar.activeBackground": "#bad3e5",
+    "editor.renderControlCharacters": false,
+    "python.workspaceSymbols.enabled": false,
+    "window.zoomLevel": -1,
+    "workbench.colorCustomizations" : {
+    "activityBar.background":"#bad3e5",
+    "statusBar.background": "#bad3e5",
+    "terminal.foreground" : "#bad3e5",
+    "terminal.background" : "#051214",
+    "titleBar.activeBackground": "#bad3e5",
+    "titleBar.inactiveBackground": "#bad3e5",
+    "titleBar.activeForeground": "#051214"
+},
+"gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+},
+"editor.scrollBeyondLastColumn": 5,
+"editor.scrollBeyondLastLine": false,
+"editor.smoothScrolling": true
+}
