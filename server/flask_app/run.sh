@@ -1,4 +1,4 @@
-python -m allennlp.service.server_simple \
+python3 -m allennlp.service.server_simple \
     --archive-path tests/fixtures/model.tar.gz \
     --predictor paper-classifier \
     --include-package my_library \
