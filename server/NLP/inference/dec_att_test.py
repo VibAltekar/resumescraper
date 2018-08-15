@@ -19,12 +19,17 @@ from allennlp.predictors import Predictor
 
 
 class TestDecomposableAttentionPredictor(AllenNlpTestCase):
-    def test_uses_named_inputs(self):
-        inputs = {
+    def test_uses_named_inputs(self,inputs=None):
+
+        if inputs == None:
+            inputs = {
                 "premise": "Two women are wandering along the shore drinking iced tea.",
                 "hypothesis": "Two women are sitting on a blanket near some rocks talking about politics."
         }
-
+        
+        
+        
+        print(inputs)
         #archive = load_archive(self.FIXTURES_ROOT / 'decomposable_attention' / 'serialization' / 'model.tar.gz')
         archive= load_archive("../models/dec_att_elmo.model")
         predictor = Predictor.from_archive(archive, 'textual-entailment')
@@ -96,4 +101,8 @@ class TestDecomposableAttentionPredictor(AllenNlpTestCase):
 
 if __name__ == "__main__":
     T = TestDecomposableAttentionPredictor()
-    print(T.test_uses_named_inputs())
+    res = (T.test_uses_named_inputs())
+    array = res["label_probs"] 
+    print("Entailment: ",array[0])
+    print("Contradiction: ",array[1])
+    print("Neutral: ",array[2])
