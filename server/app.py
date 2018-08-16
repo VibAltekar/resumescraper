@@ -11,7 +11,7 @@ from flask_pymongo import PyMongo
 def index():
     return "Hello, World!"
 
-app.config['MONGO_URI'] = 'mongodb://<user>:<password>@<url>:27017/dev?authSource=admin'
+app.config['MONGO_URI'] = 'mongodb://vib-alt:lollol123!@<url>:27017/dev?authSource=admin'
 
 mongo = PyMongo(app)
 
@@ -52,14 +52,25 @@ def get_data():
 # insert user with username, firstname and password
 # e.g. http://localhost:5000/insert/jeevan/Jeevan/Pant/
 @app.route("/insert/")
-@app.route("/insert/<username>/<firstname>/<lastname>/")
 def insert_data(username=None, firstname=None, lastname=None):
 	if username != None and firstname != None and lastname != None:
 		db.users.insert_one({
-			"username": username,
-			"firstname": firstname,
-			"lastname": lastname,
-		})
+			    "resume": {
+			        "id": 12345,
+			        "rid": 56789,
+			        "tags": [{
+			            "content": "filter"
+			        }],
+			        "views": 1,
+			        "shares": 1,
+			        "url": "string",
+			        "raw": data,
+			        "valid": True,
+			        "vector": "      ",
+			        "source": " "
+			    }
+			}
+			)
 		return 'Data inserted successfully: ' +  username + ', ' \
 		+ firstname + ' ' + lastname
 	else:

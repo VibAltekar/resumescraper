@@ -2,10 +2,18 @@ import pymongo
 import sys
 import os
 
-username = os.environ.get["MONGO_USERNAME"]
-password = os.environ.get["MONGO_PASSWORD"]
+username = os.environ.get("MONGO_USERNAME")
+password = os.environ.get("MONGO_PASSWORD")
+
+
+username = "vib-alt"
+password = "lollol123!"
+
 
 client = pymongo.MongoClient("mongodb+srv://{}:{}@phoenixsix-x4wdj.gcp.mongodb.net/test".format(username,password))
+
+with open("../resume_scraper/vp.pdf","rb") as f:
+    data = f.read()
 
 resume_blob = {
     "resume": {
@@ -17,6 +25,7 @@ resume_blob = {
         "views": 1,
         "shares": 1,
         "url": "string",
+        "raw": data,
         "valid": True,
         "vector": "      ",
         "source": " "
