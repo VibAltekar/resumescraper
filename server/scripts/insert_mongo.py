@@ -1,9 +1,9 @@
 import pymongo
 import sys
+import os
 
-
-username = sys.argv[1]
-password = sys.argv[2]
+username = os.environ.get["MONGO_USERNAME"]
+password = os.environ.get["MONGO_PASSWORD"]
 
 client = pymongo.MongoClient("mongodb+srv://{}:{}@phoenixsix-x4wdj.gcp.mongodb.net/test".format(username,password))
 
