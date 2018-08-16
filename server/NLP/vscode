@@ -1,3 +1,5 @@
+polymer theme
+
 {
     "workbench.colorTheme": "ƒ - Monokai - Operator Mono/Italic",
     "editor.minimap.enabled": false,
