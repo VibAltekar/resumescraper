@@ -1,1 +1,0 @@
-model is https://github.com/allenai/allennlp-as-a-library-example/blob/master/tests/fixtures/model.tar.gz

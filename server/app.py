@@ -1,102 +1,79 @@
-from app import app
 from flask import Flask
 from flask import jsonify
 from flask import Flask
+from flask import Request
+from flask import abort
 from pymongo import MongoClient
 
 from flask import request
 from flask_pymongo import PyMongo
 
-@app.route('/index')
-def index():
-    return "Hello, World!"
-
-app.config['MONGO_URI'] = 'mongodb://vib-alt:lollol123!@<url>:27017/dev?authSource=admin'
-
+'''
+Initialize MongoDB
+'''
+app = Flask(__name__)
+app.config.from_object('config.BaseConfig')
 mongo = PyMongo(app)
 
-@app.route('/mongo', methods=['GET'])
-def get_all_docs():
-  doc = mongo.db.abcd.insert({'abcd':'abcd'})
-  return "Inserted"
+'''
+404s
+'''
+@app.route('/')
+def index():
+    abort(404)
 
-###
+'''
+Post functions
+'''
 
-app = Flask(__name__)
-client = MongoClient('localhost', 27017)
+''' add '''
 
-app.debug = True
+@app.route('/add_resume', methods=['POST'])
+def add_resume():
+    return ('add_resume')
 
-db = client.app
+@app.route('/add_view', methods=['POST'])
+def add_view():
+    return('add_view')
 
-# default routing provies reference to all routes
-@app.route("/")
-def hello():
-	return 'Please follow links to make use of Mongo Database: <br>' \
-		'1. /get/ - get all users <br>' \
-		'3. /username/ - get particular user <br>' \
-		'2. /delete/username/ - delete user with username <br>' \
-		'3. /insert/username/firstname/lastname/ - insert user <br>' \
+@app.route('/add_tags', methods=['POST'])
+def add_view():
+    return('add_view')
 
-# getting all registered user data
-# e.g. http://localhost:5000/get/
-@app.route("/get/")
-def get_data():
-	users = db.users.find()
-	data = 'Name of Users: <br>'
-	for user in users:
-		data = data + user['username'] + ': ' \
-		+ user['firstname'] + user['lastname'] + '<br>'
-	return data
+@app.route('/add_share', methods=['POST'])
+def add_share():
+    return('add_share')
 
-# insert user with username, firstname and password
-# e.g. http://localhost:5000/insert/jeevan/Jeevan/Pant/
-@app.route("/insert/")
-def insert_data(username=None, firstname=None, lastname=None):
-	if username != None and firstname != None and lastname != None:
-		db.users.insert_one({
-			    "resume": {
-			        "id": 12345,
-			        "rid": 56789,
-			        "tags": [{
-			            "content": "filter"
-			        }],
-			        "views": 1,
-			        "shares": 1,
-			        "url": "string",
-			        "raw": data,
-			        "valid": True,
-			        "vector": "      ",
-			        "source": " "
-			    }
-			}
-			)
-		return 'Data inserted successfully: ' +  username + ', ' \
-		+ firstname + ' ' + lastname
-	else:
-		return 'Data insufficient. Please try again!'
+@app.route('/change_validity', methods=['POST'])
+def change_validity():
+    return('change_validity')
 
-# delete user
-@app.route("/insert/")
-@app.route("/delete/")
-@app.route("/delete/<username>/")
-def delete_data(username=None):
-	if username != None:
-		db.users.remove({
-			"username": username,
-		})
-		return 'Data delected successfully with useraname: ' +  username
-	else:
-		return 'Provide data to delete. Please try again!'
+@app.route('/fetch_tags', methods=['POST'])
+def fetch_tags():
+    return('fetch_tags')
 
-# get specific user
-@app.route("/<username>/")
-def users(username):
-	try:
-		user = db.users.find_one({'username': username})
-		return user['firstname'] + ' ' + user['lastname']
-	except:
-		return "User couldn't be found"
+''' delete '''
+
+@app.route('/delete_resume', methods=['POST'])
+def delete_resume():
+    return ('delete_resume')
+
+@app.route('/remove_tags', methods=['POST'])
+def add_view():
+    return('add_view')
+
+
+
+'''
+Get functions
+'''
+@app.route('/get_resume', methods=['GET'])
+def get_resume():
+    return('get_resume')
+
+@app.route('/get_resume_feed', methods=['POST'])
+def get_resume_feed():
+    return('get_resume_feed')
 
 if __name__ == '__main__':
     app.run(debug=True)

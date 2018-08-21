@@ -1,26 +1,0 @@
---2018-08-16 07:57:35--  https://vigneshp.com/
-Resolving vigneshp.com (vigneshp.com)... 185.199.108.153, 185.199.109.153, 185.199.110.153, ...
-Connecting to vigneshp.com (vigneshp.com)|185.199.108.153|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 4516 (4.4K) [text/html]
-Saving to: ‘index.html.tmp’
-
-index.html.tmp                                                  0%[                                                                                                                                                ]       0  --.-KB/s               index.html.tmp                                                100%[===============================================================================================================================================>]   4.41K  --.-KB/s    in 0s      
-
-2018-08-16 07:57:36 (41.0 MB/s) - ‘index.html.tmp’ saved [4516/4516]
-
-Removing index.html.tmp since it should be rejected.
-
---2018-08-16 07:57:36--  https://vigneshp.com/img/VigneshPalaniappan.pdf
-Reusing existing connection to vigneshp.com:443.
-HTTP request sent, awaiting response... 200 OK
-Length: 1395977 (1.3M) [application/pdf]
-Saving to: ‘VigneshPalaniappan.pdf’
-
-VigneshPalaniappan.pdf                                          0%[                                                                                                                                                ]       0  --.-KB/s               VigneshPalaniappan.pdf                                        100%[===============================================================================================================================================>]   1.33M  6.84MB/s    in 0.2s    
-
-2018-08-16 07:57:36 (6.84 MB/s) - ‘VigneshPalaniappan.pdf’ saved [1395977/1395977]
-
-FINISHED --2018-08-16 07:57:36--
-Total wall clock time: 0.5s
-Downloaded: 2 files, 1.3M in 0.2s (6.86 MB/s)
