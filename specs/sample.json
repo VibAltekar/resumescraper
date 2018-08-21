@@ -1,0 +1,15 @@
+{
+    "resume": {
+        "id": 12345,
+        "rid": 56789,
+        "tags": [{
+            "content": "filter"
+        }],
+        "views": 1,
+        "shares": 1,
+        "url": "string",
+        "valid": True,
+        "vector": "      ",
+        "source": " "
+    }
+}

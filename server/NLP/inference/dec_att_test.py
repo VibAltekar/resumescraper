@@ -8,14 +8,30 @@ from allennlp.models.archival import load_archive
 from allennlp.predictors import Predictor
 
 
-class TestDecomposableAttentionPredictor(AllenNlpTestCase):
-    def test_uses_named_inputs(self):
-        inputs = {
-                "premise": "I always write unit tests for my code.",
-                "hypothesis": "One time I didn't write any unit tests for my code."
-        }
 
-        archive = load_archive(self.FIXTURES_ROOT / 'decomposable_attention' / 'serialization' / 'model.tar.gz')
+# reuslts vector
+# 'label_probs': [0.00033908727345988154, 0.9735873341560364, 0.026073550805449486]
+
+# 0.0 97.358 2.607
+# entailment contradiction neutral
+
+
+
+
+class TestDecomposableAttentionPredictor(AllenNlpTestCase):
+    def test_uses_named_inputs(self,inputs=None):
+
+        if inputs == None:
+            inputs = {
+                "premise": "Two women are wandering along the shore drinking iced tea.",
+                "hypothesis": "Two women are sitting on a blanket near some rocks talking about politics."
+        }
+        
+        
+        
+        print(inputs)
+        #archive = load_archive(self.FIXTURES_ROOT / 'decomposable_attention' / 'serialization' / 'model.tar.gz')
+        archive= load_archive("../models/dec_att_elmo.model")
         predictor = Predictor.from_archive(archive, 'textual-entailment')
         result = predictor.predict_json(inputs)
 
@@ -39,6 +55,8 @@ class TestDecomposableAttentionPredictor(AllenNlpTestCase):
         sumexps = sum(exps)
         for e, p in zip(exps, label_probs):
             assert e / sumexps == approx(p)
+
+        return result
 
     def test_batch_prediction(self):
         batch_inputs = [
@@ -79,3 +97,12 @@ class TestDecomposableAttentionPredictor(AllenNlpTestCase):
             sumexps = sum(exps)
             for e, p in zip(exps, label_probs):
                 assert e / sumexps == approx(p)
+
+
+if __name__ == "__main__":
+    T = TestDecomposableAttentionPredictor()
+    res = (T.test_uses_named_inputs())
+    array = res["label_probs"] 
+    print("Entailment: ",array[0])
+    print("Contradiction: ",array[1])
+    print("Neutral: ",array[2])
