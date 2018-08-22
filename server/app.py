@@ -131,13 +131,17 @@ def get_resume():
     )
     return(get_response_for_object(cursor))
 
-@app.route('/get_resume_feed', methods=['POST'])
+@app.route('/get_resume_feed', methods=['GET'])
 def get_resume_feed():
     page = requests.args.get('page')
     exists(page)
     results_skip = 15 * page
     cursor = db.resume.find().sort( { time: 1 } ).skip(results_skip).limit(15)
     return(get_response_for_object(cursor))
+
+@app.route('/search', methods=['GET'])
+def search():
+    return('search')
 
 
 '''
