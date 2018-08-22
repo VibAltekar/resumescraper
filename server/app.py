@@ -40,9 +40,10 @@ Post functions
 @app.route('/add_resume', methods=['POST'])
 def add_resume():
     url = request.args.get('url')
+    tags = requests.args.get('tags')
     exists(url)
     resume = dict()
-    resume['tags'] = []
+    resume['tags'] = json.loads(tags)
     resume['views'] = DEFAULT_VALUE
     resume['shares'] = DEFAULT_VALUE
     resume['url'] = url
