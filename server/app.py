@@ -1,14 +1,13 @@
 from flask import Flask
 from flask import jsonify
-from flask import Flask
-from Flask import json
+from flask import json
 from flask import Request
 from flask import abort
 from pymongo import MongoClient
 
 from flask import request
 from flask_pymongo import PyMongo
-import httplib
+import http.client
 import bson
 import datetime
 
@@ -57,8 +56,8 @@ def add_view():
     id = requests.args.get('id')
     exists(id)
     post_status = db.resume.update(
-        {_id: generate_object_id(id)},
-        { $inc: { views: 1 } }
+        {'_id': generate_object_id(id)},
+        { '$inc': { 'views': 1 } }
     )
     return(post_status_valid(post_status))
 
@@ -70,8 +69,8 @@ def add_tags():
     exists(tags)
     tags_to_json = json.loads(tags)
     post_status = db.resume.update(
-        {_id: generate_object_id(id)},
-        { $addToSet: { tags: { $each: tags_to_json } } }
+        {'_id': generate_object_id(id)},
+        { '$addToSet': { 'tags': { '$each': tags_to_json } } }
     )
     return(post_status_valid(post_status))
 
@@ -80,8 +79,8 @@ def add_share():
     id = requests.args.get('id')
     exists(id)
     post_status = db.resume.update(
-        {_id: generate_object_id(id)},
-        { $inc: { shares: 1 } }
+        {'_id': generate_object_id(id)},
+        { '$inc': { 'shares': 1 } }
     )
     return(post_status_valid(post_status))
 
@@ -92,8 +91,8 @@ def change_validity():
     exists(id)
     exists(validity)
     post_status = db.resume.update(
-        {_id: generate_object_id(id)},
-        { valid: validity }
+        {'_id': generate_object_id(id)},
+        { 'valid': validity }
     )
     return(post_status_valid(post_status))
 
@@ -104,7 +103,7 @@ def delete_resume():
     id = requests.args.get('id')
     exists(id)
     post_status = db.resume.remove(
-        {_id: generate_object_id(id)},
+        {'_id': generate_object_id(id)},
     )
     return(post_status_valid(post_status))
 
@@ -113,8 +112,8 @@ def remove_tags():
     id = requests.args.get('id')
     exists(id)
     post_status = db.resume.update(
-        {_id: generate_object_id(id)},
-        { tags: [] }
+        {'_id': generate_object_id(id)},
+        { 'tags': [] }
     )
     return(post_status_valid(post_status))
 
@@ -156,7 +155,7 @@ def exists(obj):
         return (jsonify(data))
 
 def url_exists(url):
-    c = httplib.HTTPConnection(url)
+    c = http.client.HTTPConnection(url)
     c.request("HEAD", '')
     if c.getresponse().status is not 200:
         return(False)
