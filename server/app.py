@@ -7,6 +7,7 @@ from pymongo import MongoClient
 
 from flask import request
 from flask_pymongo import PyMongo
+from aggregator import Aggregator
 import http.client
 import bson
 import datetime
