@@ -27,10 +27,10 @@ def fetchResumeResources():
         e = {}
         e['url'] = element
         e['resource'] = fetchPDFSource(element)
-        print(e)
-        resources.append(e)
-
-
+        if e['resource'] is not None and e['resource'] is not "" and len(e['resource']) > 0:
+            print(e)
+            e['resource'] = list(set(e['resource']))
+            resources.append(e)
 
 
 def fetchPDFSource(url):
@@ -52,7 +52,7 @@ def sniff(content, url):
     elements = []
     for link in content.find_all('a'):
         current_link = link.get('href')
-        if current_link.endswith('pdf'):
+        if current_link and current_link.endswith('pdf'):
             if current_link.startswith("http:"):
                 dummy_current_link = current_link.lower()
                 if "cv" in dummy_current_link or "resume" in dummy_current_link:
